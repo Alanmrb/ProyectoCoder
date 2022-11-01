@@ -106,14 +106,15 @@ function buscar_usuario(usuario){
       }
   
       i++;
+      return encontrado;
   
     }
   
-    return encontrado;
+    
   
   }
 
-function crearusuario(crear_tecnico){
+function crearusuario(){
 
      let tecnico_nuevo = pedirdatos();
     
@@ -121,14 +122,18 @@ function crearusuario(crear_tecnico){
      
    
        let almacenados = JSON.parse(localStorage.getItem("listaUsuarios"));
-       almacenados.push(crear_tecnico);
+       almacenados.push(tecnico);
        localStorage.setItem("listaUsuarios",almacenados);
+       tecnico.set_id(gen_id);
+       gen_id ++;
    
      }else{
    
        let almacenados = new Array();
-       almacenados.push(crear_tecnico);
+       almacenados.push(tecnico);
        localStorage.setItem("listaUsuarios",almacenados);
+       tecnico.set_id(gen_id);
+       gen_id ++;
    
    
      }
@@ -138,6 +143,7 @@ function crearusuario(crear_tecnico){
 
 function pedirdatos(){
     let check = true ;
+    
 
     while (check){
         let msj = "" ;
@@ -170,19 +176,22 @@ function pedirdatos(){
             check = confirm ("Desea cargar de nuevo los datos");
 
         }else {
+            
   
             alert('Usuario creado con exito');
             check=confirm('desea cargar un nuevo usuario?');
-            if(!check){
-                return check;
-            
+            if(check){
+                return check = true;
+                
             } else {
-            crear_tecnico = new tecnico(usuario,mail,pass);
+
+                return new tecnico(usuario,mail,pass);
             
         }}
     }
 
         return true ;
+        
 
     }
 
