@@ -13,6 +13,7 @@ formu.addEventListener('click', (event) => {
 
 let almacenados = new Array ();
 almacenados.push(new tecnico('carlos','carlos@gmail.com','1234'));
+localStorage.setItem("listaUsuarios",almacenados);
 
 let gen_id = 1 ;
 
@@ -114,34 +115,19 @@ function buscar_usuario(usuario){
   
   }
 
-function crearusuario(){
+/*
 
      let tecnico_nuevo = pedirdatos();
-    
-     if (tecnico_nuevo) {
-     
+     let almacenados = JSON.parse(localStorage.getItem("listaUsuarios"));
+     almacenados.push(tecnico_nuevo);
+     localStorage.setItem("listaUsuarios",almacenados);
+   */
+       
    
-       let almacenados = JSON.parse(localStorage.getItem("listaUsuarios"));
-       almacenados.push(tecnico);
-       localStorage.setItem("listaUsuarios",almacenados);
-       tecnico.set_id(gen_id);
-       gen_id ++;
-   
-     }else{
-   
-       let almacenados = new Array();
-       almacenados.push(tecnico);
-       localStorage.setItem("listaUsuarios",almacenados);
-       tecnico.set_id(gen_id);
-       gen_id ++;
-   
-   
-     }
-   }
 
     
 
-function pedirdatos(){
+function crearusuario(){
     let check = true ;
     
 
@@ -180,12 +166,14 @@ function pedirdatos(){
   
             alert('Usuario creado con exito');
             check=confirm('desea cargar un nuevo usuario?');
+        
             if(check){
                 return check = true;
                 
             } else {
 
-                return new tecnico(usuario,mail,pass);
+                let crear_tecnico = new tecnico(usuario,mail,pass);
+                guardartecnico(crear_tecnico);
             
         }}
     }
@@ -194,6 +182,30 @@ function pedirdatos(){
         
 
     }
+
+function guardartecnico(crear_tecnico){
+
+    let item = localStorage.getItem("listaUsuarios");
+    if (item){
+  
+      let almacenados = JSON.parse(localStorage.getItem("listaUsuarios"));
+      almacenados.push(crear_tecnico);
+      localStorage.setItem("listaUsuarios",almacenados);
+  
+  
+    }else{
+  
+      let almacenados = new Array();
+      almacenados.push(crear_tecnico);
+      localStorage.setItem("listaUsuarios",almacenados);
+  
+      
+  
+    }
+  }
+  
+  
+
 
 function existen_tecnicos(){
 
