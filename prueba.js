@@ -15,8 +15,6 @@ let almacenados = new Array ();
 almacenados.push(new tecnico('carlos','carlos@gmail.com','1234'));
 localStorage.setItem("listaUsuarios",almacenados);
 
-let gen_id = 1 ;
-
 let flag = true ;
 
 alert("Bienvenido, presione aceptar para ingresar");
@@ -73,7 +71,7 @@ function validarusuario(){
     if (user != false) {
         let usuario_recuperado = new tecnico (user)
   
-      alert("Bienvenido "+usuario_recuperado.getDatos() );
+      alert("Bienvenido ");
   
     }else{
   
@@ -87,7 +85,7 @@ function buscar_usuario(usuario){
       return false;
     }
   
-    let almacenados = JSON.parse(localStorage.getItem("listaUsuarios"));
+    /*let almacenados = JSON.parse(localStorage.getItem("listaUsuarios"));*/
     let encontrado = false;
     let i = 0;
    
@@ -108,17 +106,6 @@ function buscar_usuario(usuario){
   
   }
 
-/*
-
-     let tecnico_nuevo = pedirdatos();
-     let almacenados = JSON.parse(localStorage.getItem("listaUsuarios"));
-     almacenados.push(tecnico_nuevo);
-     localStorage.setItem("listaUsuarios",almacenados);
-   */
-       
-   
-
-    
 
 function crearusuario(){
     let check = true ;
@@ -158,15 +145,17 @@ function crearusuario(){
             
   
             alert('Usuario creado con exito');
+            let crear_tecnico = new tecnico(usuario,mail,pass);
+            guardartecnico(crear_tecnico);
             check=confirm('desea cargar un nuevo usuario?');
         
             if(check){
                 return check = true;
-                
+            
+
             } else {
 
-                let crear_tecnico = new tecnico(usuario,mail,pass);
-                guardartecnico(crear_tecnico);
+                return chek = false ; 
                 
         }}
     }
