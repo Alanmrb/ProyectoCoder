@@ -62,13 +62,6 @@ while (flag){
 
 }
 
-/*function deseavolver(){
-
-    let volvermenu = confirm ('Desea volver al menu anterior?');
-    if (volvermenu) {
-        prompt (mensaje);
-    }
-}*/
 
 function validarusuario(){
     
@@ -174,7 +167,7 @@ function crearusuario(){
 
                 let crear_tecnico = new tecnico(usuario,mail,pass);
                 guardartecnico(crear_tecnico);
-            
+                
         }}
     }
 
@@ -183,28 +176,33 @@ function crearusuario(){
 
     }
 
+    
+
+          
+      
+        
+      
 function guardartecnico(crear_tecnico){
 
     let item = localStorage.getItem("listaUsuarios");
     if (item){
   
-      let almacenados = JSON.parse(localStorage.getItem("listaUsuarios"));
       almacenados.push(crear_tecnico);
-      localStorage.setItem("listaUsuarios",almacenados);
+      localStorage.setItem("listaUsuarios",JSON.stringify(almacenados));
   
   
     }else{
   
       let almacenados = new Array();
       almacenados.push(crear_tecnico);
-      localStorage.setItem("listaUsuarios",almacenados);
+      localStorage.setItem("listaUsuarios",JSON.stringify(almacenados));
   
       
   
     }
   }
   
-  
+
 
 
 function existen_tecnicos(){
